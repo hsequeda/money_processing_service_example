@@ -88,3 +88,23 @@ func TestNewAccount(t *testing.T) {
 		})
 	}
 }
+
+func TestAccountIsZero(t *testing.T) {
+	t.Parallel()
+	t.Run("Ok", func(t *testing.T) {
+		t.Parallel()
+		account, err := domain.NewAccount(
+			uuid.New().String(),
+			domain.CurrencyCOP,
+			uuid.New().String(),
+		)
+		require.NoError(t, err)
+		require.False(t, account.IsZero())
+	})
+
+	t.Run("Fail: IsZero", func(t *testing.T) {
+		t.Parallel()
+		require.True(t, (domain.Account{}).IsZero())
+		require.True(t, (&domain.Account{}).IsZero())
+	})
+}
