@@ -1,6 +1,8 @@
 package domain
 
-import "errors"
+import (
+	"errors"
+)
 
 // Account represent one of the bank account of the client.
 type Account struct {
